@@ -1,0 +1,26 @@
+---
+- name: Konfigurasi Server Awal
+  hosts: servers
+  become: yes  # Menjalankan task sebagai root (sudo)
+  tasks:
+    - name: 1. Cek koneksi ke server
+      ansible.builtin.ping:
+
+    - name: 2. Update cache APT
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: 3. Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: 4. Install Cockpit
+      ansible.builtin.apt:
+        name: cockpit
+        state: present
+
+    - name: 5. Install Docker
+      ansible.builtin.apt:
+        name: docker.io
+        state: present
